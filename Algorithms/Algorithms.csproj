@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sorting.cs" />
+    <Compile Include="InsertionSortExtensions.cs" />
+    <Compile Include="LinearSearchExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\InsertionSort.cs" />
+    <Compile Include="Tests\SortingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
