@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Algorithms.Tests {
     public partial class SortingTests {
+        [TestFixture]
         public class InsertionSort {
             [TestCase(new[] {1, 2, 3}, new[] {1, 2, 3}, TestName = "In Order")]
             [TestCase(new[] {2, 3, 1}, new[] {1, 2, 3}, TestName = "Out of Order")]
@@ -49,6 +50,5 @@ namespace Algorithms.Tests {
                 Assert.True(sorted.SequenceEqual(expected));
             }
         }
-        
     }
 }
