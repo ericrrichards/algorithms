@@ -66,6 +66,36 @@ namespace Algorithms {
                 a[i] = smallest;
             }
         }
+        /// <summary>
+        /// Recursive selection sort
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="a"></param>
+        /// <param name="n"></param>
+        /// <param name="index"></param>
+        public static void SelectionSortRec<T>(this T[] a, int n=0, int index = 0) where T : IComparable<T> {
+            int MinIndex<T>(T[] array, int i, int j) where T : IComparable<T>{
+                if (i == j) {
+                    return i;
+                }
+                var k = MinIndex(array, i + 1, j);
+                return (array[i].CompareTo(array[k]) <0) ? i : k;
+            }
+
+            if (n == 0) {
+                n = a.Length;
+            }
+            if (index == n) {
+                return;
+            }
+            var min = MinIndex(a, index, n - 1);
+            if (min != index) {
+                var temp = a[min];
+                a[min] = a[index];
+                a[index] = temp;
+            }
+            a.SelectionSortRec(n, index+1);
+        }
 
     }
 }
