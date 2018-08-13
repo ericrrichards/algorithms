@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Algorithms.Tests {
@@ -19,6 +21,22 @@ namespace Algorithms.Tests {
                 var sorted = input.ToArray();
                 sorted.MergeSort();
                 Assert.True(sorted.SequenceEqual(expected), DebugSort(input, sorted, expected));
+            }
+
+            [Test]
+            public void MergeSort_Random() {
+                var arraySize = 100;
+                var rand = new Random();
+                for (int i = 0; i < 100; i++) {
+                    var l = new List<double>();
+                    for (int j = 0; j < arraySize; j++) {
+                        l.Add(rand.NextDouble()*100);
+                    }
+
+                    var a = l.ToArray();
+                    a.MergeSort();
+                    Assert.True(a.SequenceEqual(l.OrderBy(li=>li)));
+                }
             }
         }
     }

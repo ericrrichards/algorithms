@@ -6,42 +6,43 @@ namespace Algorithms {
             a.MergeSort(0, a.Length - 1);
         }
 
-        private static void MergeSort(this int[] a, int p, int r) {
-            if (p < r) {
-                var q = (p + r) / 2;
-                a.MergeSort(p, q);
-                a.MergeSort(q + 1, r);
-                a.Merge(p, q, r);
+        private static void MergeSort(this int[] a, int min, int max) {
+            if (min < max) {
+                var mid = (min + max) / 2;
+                a.MergeSort(min, mid);
+                a.MergeSort(mid + 1, max);
+                a.Merge(min, mid, max);
             }
         }
 
-        private static void Merge(this int[] a, int p, int q, int r) {
-            var n1 = q - p + 1;
-            var n2 = r - q;
+        private static void Merge(this int[] a, int min, int mid, int max) {
+            var n1 = mid - min + 1;
+            var n2 = max - mid;
             var left = new int[n1 + 1];
             var right = new int[n2 + 1];
+            // set sentinel values
             left[n1] = int.MaxValue;
             right[n2] = int.MaxValue;
-            int i;
-            int j;
-            for (i = 0; i < n1; i++) {
-                left[i] = a[p + i];
+            int leftIndex;
+            int rightIndex;
+            for (leftIndex = 0; leftIndex < n1; leftIndex++) {
+                left[leftIndex] = a[min + leftIndex];
             }
 
-            for (j = 0; j < n2; j++) {
-                right[j] = a[q + j + 1];
+            for (rightIndex = 0; rightIndex < n2; rightIndex++) {
+                right[rightIndex] = a[mid + rightIndex + 1];
             }
 
             
-            i = 0;
-            j = 0;
-            for (var k = p; k <= r; k++) {
-                if (left[i] < right[j]) {
-                    a[k] = left[i];
-                    i++;
+            leftIndex = 0;
+            rightIndex = 0;
+            for (var i = min; i <= max; i++) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    a[i] = left[leftIndex];
+                    leftIndex++;
                 } else {
-                    a[k] = right[j];
-                    j++;
+                    a[i] = right[rightIndex];
+                    rightIndex++;
                 }
             }
         }
@@ -49,40 +50,40 @@ namespace Algorithms {
             a.MergeSort(0, a.Length - 1);
         }
 
-        private static void MergeSort<T>(this T[] a, int p, int r) where T : IComparable<T> {
-            if (p < r) {
-                var q = (p + r) / 2;
-                a.MergeSort(p, q);
-                a.MergeSort(q + 1, r);
-                a.Merge(p, q, r);
+        private static void MergeSort<T>(this T[] a, int min, int max) where T : IComparable<T> {
+            if (min < max) {
+                var mid = (min + max) / 2;
+                a.MergeSort(min, mid);
+                a.MergeSort(mid + 1, max);
+                a.Merge(min, mid, max);
             }
         }
 
-        private static void Merge<T>(this T[] a, int p, int q, int r) where T : IComparable<T> {
-            var n1 = q - p + 1;
-            var n2 = r - q;
+        private static void Merge<T>(this T[] a, int min, int mid, int max) where T : IComparable<T> {
+            var n1 = mid - min + 1;
+            var n2 = max - mid;
             var left = new T[n1];
             var right = new T[n2];
-            int i;
-            int j;
-            for (i = 0; i < n1; i++) {
-                left[i] = a[p + i];
+            int leftIndex;
+            int rightIndex;
+            for (leftIndex = 0; leftIndex < n1; leftIndex++) {
+                left[leftIndex] = a[min + leftIndex];
             }
 
-            for (j = 0; j < n2; j++) {
-                right[j] = a[q + j + 1];
+            for (rightIndex = 0; rightIndex < n2; rightIndex++) {
+                right[rightIndex] = a[mid + rightIndex + 1];
             }
 
 
-            i = 0;
-            j = 0;
-            for (var k = p; k <= r; k++) {
-                if (i < n1 && j < n2 && left[i].CompareTo(right[j]) < 0 || i < n1 && j >= n2) {
-                    a[k] = left[i];
-                    i++;
-                } else if (j < n2) {
-                    a[k] = right[j];
-                    j++;
+            leftIndex = 0;
+            rightIndex = 0;
+            for (var i = min; i <= max; i++) {
+                if (leftIndex < n1 && rightIndex < n2 && left[leftIndex].CompareTo(right[rightIndex]) < 0 || leftIndex < n1 && rightIndex >= n2) {
+                    a[i] = left[leftIndex];
+                    leftIndex++;
+                } else if (rightIndex < n2) {
+                    a[i] = right[rightIndex];
+                    rightIndex++;
                 }
             }
         }
