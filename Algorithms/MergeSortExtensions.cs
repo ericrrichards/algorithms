@@ -52,7 +52,7 @@ namespace Algorithms {
 
         private static void MergeSort<T>(this T[] a, int min, int max) where T : IComparable<T> {
             if (min < max) {
-                var mid = (min + max) / 2;
+                var mid = min/2 + max/2 + (min&max&1);
                 a.MergeSort(min, mid);
                 a.MergeSort(mid + 1, max);
                 a.Merge(min, mid, max);
