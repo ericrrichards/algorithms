@@ -38,6 +38,48 @@ namespace Algorithms.Tests {
                     Assert.True(a.SequenceEqual(l.OrderBy(li=>li)));
                 }
             }
+
+/*
+var a = new[] { 4, 6, 1, 3, 2 };
+a.MergeSort()=> {
+    a.MergeSort(0, 4) => { = cn
+        a.MergeSort(0,2) => { = cn/2
+            a.MergeSort(0,1) => { = cn/4
+                a.MergeSort(0,0); = T(1) = c
+                a.MergeSort(1,1); = T(1) = c
+                a.Merge(0,0,1); = cn/2
+            a.MergeSort(2,2); = T(1) = c
+            a.Merge(0,1,2); = cn/2
+        }
+        a.MergeSort(3,4) => { = T(n/2)
+            a.MergeSort(3,3); = T(1) = c
+            a.MergeSort(4,4); = T(1) = c
+            a.Merge(3,3,4); = cn/2
+        }
+        a.Merge(0, 2, 4); = cn
+    }
+}
+*/
+                
+/*
+    n = 4
+
+    T(4)
+    2T(2) + 4c
+    2(2T(1) + 2c) + 4c
+    2(2c) + 2c) + 4c
+    4c + 2(2c) + 2c)
+    4c + 4c + 4c
+
+    T(4)
+    T(2) + T(2) + 4c
+    T(1) + T(1) + 2c + T(1) + T(1) + 2c + 4c
+    c + c + 2c + c + c + 2c + 4c
+    4(c) + 2(2c) + 4c
+
+
+ */
+
         }
     }
 }
