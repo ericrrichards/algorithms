@@ -20,6 +20,14 @@ namespace Algorithms.Tests {
                 input.InsertionSort();
                 Assert.True(sorted.SequenceEqual(expected));
             }
+            [TestCase(new[] {1, 2, 3}, new[] {1, 2, 3}, TestName = "In Order")]
+            [TestCase(new[] {2, 3, 1}, new[] {1, 2, 3}, TestName = "Out of Order")]
+            [TestCase(new[] {10, 6, 12, 4, 1}, new[] {1, 4, 6, 10, 12}, TestName = "Card Example")]
+            public void SortInPlaceBinary(int[] input, int[] expected) {
+                var sorted = input.ToArray();
+                sorted.InsertionSortBinary();
+                Assert.True(sorted.SequenceEqual(expected), DebugSort(input, sorted, expected));
+            }
 
             [TestCase(new[] {1, 2, 3}, new[] {1, 2, 3}, TestName = "In Order")]
             [TestCase(new[] {2, 3, 1}, new[] {1, 2, 3}, TestName = "Out of Order")]

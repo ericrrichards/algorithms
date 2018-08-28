@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Algorithms</RootNamespace>
     <AssemblyName>Algorithms</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,14 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,21 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySearchExtensions.cs" />
     <Compile Include="InsertionSortExtensions.cs" />
     <Compile Include="LinearSearchExtensions.cs" />
     <Compile Include="MergeSortExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectionSortExtensions.cs" />
-    <Compile Include="Tests\InsertionSort.cs" />
-    <Compile Include="Tests\SelectionSort.cs" />
-    <Compile Include="Tests\SortingTests.cs" />
-    <Compile Include="Tests\SortingTests.MergeSort.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,6 +45,18 @@ namespace Algorithms {
                 a[i + 1] = key;
             }
         }
+        public static void InsertionSortBinary<T>(this T[] a) where T : IComparable<T> {
+            for (var j = 1; j < a.Length; j++) {
+                var key = a[j];
+                var i = j - 1;
+                var loc = ~a.BinarySearch(key, 0, i);
+                while (i >= loc ) {
+                    a[i + 1] = a[i];
+                    i--;
+                }
+                a[i + 1] = key;
+            }
+        }
         /// <summary>
         /// Generic immutable insertion sort
         /// </summary>

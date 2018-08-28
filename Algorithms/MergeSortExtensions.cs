@@ -3,9 +3,6 @@
 namespace Algorithms {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
-
-    using NUnit.Framework;
 
     public static class MergeSortExtensions {
         #region integer mergesort with sentinel values
