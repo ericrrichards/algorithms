@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchTests.cs" />
-    <Compile Include="InsertionSort.cs" />
-    <Compile Include="SelectionSort.cs" />
+    <Compile Include="SortingTests.InsertionSort.cs" />
+    <Compile Include="SortingTests.SelectionSort.cs" />
     <Compile Include="SortingTests.cs" />
     <Compile Include="SortingTests.MergeSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

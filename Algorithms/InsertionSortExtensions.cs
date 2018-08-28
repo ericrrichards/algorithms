@@ -49,12 +49,31 @@ namespace Algorithms {
             for (var j = 1; j < a.Length; j++) {
                 var key = a[j];
                 var i = j - 1;
-                var loc = ~a.BinarySearch(key, 0, i);
+
+                var low = 0;
+                var high = i;
+                var mid = low / 2 + high / 2 + (low & high & 1);
+
+                var loc = Find(a, key, 0, i);
                 while (i >= loc ) {
                     a[i + 1] = a[i];
                     i--;
                 }
                 a[i + 1] = key;
+            }
+
+            int Find(T[] array, T item, int low, int high) {
+                if (high <= low) {
+                    return item.CompareTo(array[low]) > 0 ? low + 1 : low;
+                }
+                var mid = low / 2 + high / 2 + (low & high & 1);
+                if (item.CompareTo(array[mid])==0) {
+                    return mid + 1;
+                }
+                if (item.CompareTo(array[mid]) > 0) {
+                    return Find(array, item, mid + 1, high);
+                }
+                return Find(array, item, low, mid - 1);
             }
         }
         /// <summary>

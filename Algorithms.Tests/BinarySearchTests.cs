@@ -47,10 +47,36 @@ namespace Algorithms.Tests {
                 }
             }
         }
-        [TestCase(new[]{6, 10}, 12, 1)]
-        public void FindInsertionPoint(int[] a, int find, int expectedPos) {
-            var ret = a.BinarySearch(find, 0, 1);
-            Assert.AreEqual(expectedPos, ~ret);
+
+        [Test]
+        public void BinarySearchRandom() {
+            var arraySize = 100;
+            var rand = new Random();
+            for (int i = 0; i < 100; i++) {
+                var l = new List<double>();
+                for (int j = 0; j < arraySize; j++) {
+                    l.Add(rand.NextDouble()*100);
+                }
+                var find = rand.NextDouble() * 100;
+                var a = l.OrderBy(d => d).ToArray();
+
+                var ret = a.BinarySearch(find);
+                var expected = Array.BinarySearch(a, find);
+                Assert.AreEqual(expected, ret, i.ToString());
+                if (ret < 0) {
+                    var insert = ~ret;
+                    if (insert == 0) {
+                        Assert.True(a.Length == 0 || a[0] > find);
+                    } else if (insert >= a.Length) {
+                        Assert.True(a[a.Length-1] < find);
+                    } else {
+                        Assert.True(a[insert-1] < find && a[insert] > find);
+                    }
+                }
+            }
+
+
+            
         }
     }
 }

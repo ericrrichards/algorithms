@@ -46,19 +46,21 @@ namespace Algorithms {
         }
 
         public static int BinarySearch<T>(this T[] a, T find, int min, int max) where T : IComparable<T> {
-            while (min < max) {
-                var mid = min / 2 + max / 2 + (min & max & 1);
+            var lo = min;
+            var hi = min + max - 1;
+            while (lo <= hi) {
+                var mid = lo + (hi-lo)/2;
                 var c = a[mid].CompareTo(find);
                 if (c == 0) {
                     return mid;
                 }
                 if (c > 0) {
-                    max = mid - 1;
+                    hi = mid - 1;
                     continue;
                 }
-                min = mid + 1;
+                lo = mid + 1;
             }
-            return ~min;
+            return ~lo;
         }
     }
 }

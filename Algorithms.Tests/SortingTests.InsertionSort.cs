@@ -2,6 +2,9 @@
 using NUnit.Framework;
 
 namespace Algorithms.Tests {
+    using System;
+    using System.Collections.Generic;
+
     public partial class SortingTests {
         [TestFixture]
         public class InsertionSort {
@@ -27,6 +30,23 @@ namespace Algorithms.Tests {
                 var sorted = input.ToArray();
                 sorted.InsertionSortBinary();
                 Assert.True(sorted.SequenceEqual(expected), DebugSort(input, sorted, expected));
+            }
+
+            [Test]
+            public void InsertionSortBinary_Random() {
+                var arraySize = 100;
+                var rand = new Random();
+                for (int i = 0; i < 100; i++) {
+                    var l = new List<double>();
+                    for (int j = 0; j < arraySize; j++) {
+                        l.Add(rand.NextDouble()*100);
+                    }
+
+                    var a = l.ToArray();
+                    a.InsertionSortBinary();
+                    var expected = l.OrderBy(li=>li).ToList();
+                    Assert.True(a.SequenceEqual(expected), DebugSort(l, a, expected));
+                }
             }
 
             [TestCase(new[] {1, 2, 3}, new[] {1, 2, 3}, TestName = "In Order")]
