@@ -115,13 +115,17 @@ namespace Algorithms {
             var right = MergeSort(a.Skip(mid).ToList());
 
             // merge the sorted subarrays
+            return Merge(left, right);
+        }
+
+        private static List<T> Merge<T>(List<T> left, List<T> right) where T : IComparable<T> {
             var ret = new List<T>();
-            for (var i = 0; i < a.Count; i++) {
+            for (var i = 0; i < left.Count + right.Count; i++) {
                 if (right.Count == 0) {
-                    return ret.Concat(left).ToList();
+                    return ret;
                 }
                 if (left.Count == 0) {
-                    return ret.Concat(right).ToList();
+                    return ret;
                 }
                 var l = left.First();
                 var r = right.First();
