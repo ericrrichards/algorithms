@@ -120,12 +120,13 @@ namespace Algorithms {
 
         private static List<T> Merge<T>(List<T> left, List<T> right) where T : IComparable<T> {
             var ret = new List<T>();
-            for (var i = 0; i < left.Count + right.Count; i++) {
+            var total = left.Count + right.Count;
+            for (var i = 0; i < total; i++) {
                 if (right.Count == 0) {
-                    return ret;
+                    return ret.Concat(left).ToList();
                 }
                 if (left.Count == 0) {
-                    return ret;
+                    return ret.Concat(right).ToList();
                 }
                 var l = left.First();
                 var r = right.First();
