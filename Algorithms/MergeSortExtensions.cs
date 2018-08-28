@@ -86,6 +86,7 @@ namespace Algorithms {
             leftIndex = 0;
             rightIndex = 0;
             for (var i = min; i <= max; i++) {
+                // We now have to do bounds checking to make sure that we stay within our right and left arrays
                 if (leftIndex < lSize && rightIndex < rSize && left[leftIndex].CompareTo(right[rightIndex]) < 0 || leftIndex < lSize && rightIndex >= rSize) {
                     a[i] = left[leftIndex];
                     leftIndex++;
