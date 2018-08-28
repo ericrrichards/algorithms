@@ -104,33 +104,33 @@ namespace Algorithms {
         }
         #endregion
 
-public static List<T> MergeSort<T>(this List<T> a) where T:IComparable<T> {
-    // base case
-    if (a.Count == 1) {
-        return new List<T>(a);
-    }
-    // find the split point
-    var mid = a.Count / 2;
-    var left = MergeSort(a.Take(mid).ToList());
-    var right = MergeSort(a.Skip(mid).ToList());
+        public static List<T> MergeSort<T>(this List<T> a) where T : IComparable<T> {
+            // base case
+            if (a.Count == 1) {
+                return new List<T>(a);
+            }
+            // find the split point
+            var mid = a.Count / 2;
+            var left = MergeSort(a.Take(mid).ToList());
+            var right = MergeSort(a.Skip(mid).ToList());
 
-    // merge the sorted subarrays
-    return Merge(left, right);
-}
+            // merge the sorted subarrays
+            return Merge(left, right);
+        }
 
-private static List<T> Merge<T>(List<T> left, List<T> right) where T : IComparable<T> {
-    if (right.Count == 0) {
-        return left;
-    }
-    if (left.Count == 0) {
-        return right;
-    }
-    var l = left.First();
-    var r = right.First();
-    return l.CompareTo(r) < 0 
-        ? new List<T>{l}.Concat(Merge(left.Skip(1).ToList(), right)).ToList() 
-        : new List<T> { r }.Concat(Merge(left, right.Skip(1).ToList())).ToList();
-}
+        private static List<T> Merge<T>(List<T> left, List<T> right) where T : IComparable<T> {
+            if (right.Count == 0) {
+                return left;
+            }
+            if (left.Count == 0) {
+                return right;
+            }
+            var l = left.First();
+            var r = right.First();
+            return l.CompareTo(r) < 0
+                ? new List<T> { l }.Concat(Merge(left.Skip(1).ToList(), right)).ToList()
+                : new List<T> { r }.Concat(Merge(left, right.Skip(1).ToList())).ToList();
+        }
     }
 
 }
