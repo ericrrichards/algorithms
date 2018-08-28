@@ -1,6 +1,12 @@
 ﻿using System;
 
 namespace Algorithms {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using NUnit.Framework;
+
     public static class MergeSortExtensions {
         #region integer mergesort with sentinel values
         public static void MergeSort(this int[] a) {
@@ -97,6 +103,38 @@ namespace Algorithms {
             }
         }
         #endregion
+
+        public static List<T> MergeSort<T>(this List<T> a) where T:IComparable<T> {
+            // base case
+            if (a.Count == 1) {
+                return new List<T>(a);
+            }
+            // find the split point
+            var mid = a.Count / 2;
+            var left = MergeSort(a.Take(mid).ToList());
+            var right = MergeSort(a.Skip(mid).ToList());
+
+            // merge the sorted subarrays
+            var ret = new List<T>();
+            for (var i = 0; i < a.Count; i++) {
+                if (right.Count == 0) {
+                    return ret.Concat(left).ToList();
+                }
+                if (left.Count == 0) {
+                    return ret.Concat(right).ToList();
+                }
+                var l = left.First();
+                var r = right.First();
+                if (l.CompareTo(r) < 0) {
+                    ret.Add(l);
+                    left = left.Skip(1).ToList();
+                } else {
+                    ret.Add(r);
+                    right = right.Skip(1).ToList();
+                }
+            }
+            return ret;
+        }
     }
 
 }

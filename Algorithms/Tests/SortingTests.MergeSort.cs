@@ -38,6 +38,22 @@ namespace Algorithms.Tests {
                     Assert.True(a.SequenceEqual(l.OrderBy(li=>li)));
                 }
             }
+            [Test]
+            public void MergeSort2_Random() {
+                var arraySize = 100;
+                var rand = new Random();
+                for (int i = 0; i < 100; i++) {
+                    var l = new List<double>();
+                    for (int j = 0; j < arraySize; j++) {
+                        l.Add(rand.NextDouble()*100);
+                    }
+
+                    var a = l;
+                    var sorted = a.MergeSort();
+                    var expected = l.OrderBy(li=>li).ToList();
+                    Assert.True(sorted.SequenceEqual(expected), DebugSort(a, sorted, expected));
+                }
+            }
 
 /*
 var a = new[] { 4, 6, 1, 3, 2 };
